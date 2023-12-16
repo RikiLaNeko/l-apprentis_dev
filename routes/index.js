@@ -40,7 +40,7 @@ router.get('/chat', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  res.render('login', { title: 'Login' });
+  res.render('auth/login', { title: 'Login' });
 });
 
 router.post('/login', (req, res) => {
@@ -67,7 +67,7 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-  res.render('register', { title: 'Register' });
+  res.render('auth/register', { title: 'Register' });
 });
 
 router.post('/register', (req, res) => {
@@ -115,11 +115,11 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/language-settings', (req, res) => {
-  res.render('languageSettings', { title: 'Language Settings', user: req.session.user });
+  res.render('settings/languageSettings', { title: 'Language Settings', user: req.session.user });
 });
 
 router.get('/account-settings', (req, res) => {
-  res.render('accountSettings', { title: 'Account Settings', user: req.session.user });
+  res.render('settings/accountSettings', { title: 'Account Settings', user: req.session.user });
 });
 
 router.post('/change-username', (req, res) => {
@@ -243,10 +243,11 @@ router.get('/get-messages', (req, res) => {
       console.error('Error retrieving messages:', err);
       res.status(500).send('Server error');
     } else {
-      res.render('chat', { title: 'Chat', user, messages: results, receiver_id });
+      res.render('chat', { title: 'Chat', user, messages: results, users, receiver_id });
     }
   });
 });
+
 
 router.get('/get-messages/:sender_id/:receiver_id', (req, res) => {
   const { sender_id, receiver_id } = req.params;

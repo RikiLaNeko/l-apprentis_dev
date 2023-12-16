@@ -12,6 +12,8 @@
             <form action="/logout" method="post">
                 <button type="submit">Logout</button>
             </form>
+            <!-- Show the link only when the user is logged in -->
+            <a href="/users" class="right">Liste des utilisateurs</a>
         </div>
     <% } else { %>
         <a href="/login" class="right">Login</a>
@@ -37,6 +39,5 @@
             });
         });
     </script>
-    <a href="/users">Liste des utilisateurs</a>
 </header>
-<link rel='stylesheet' href='/stylesheets/index.css' /> <!-- Ajoutez le lien vers index.css -->
+<link rel='stylesheet' href='/stylesheets/header.css' /> <!-- Ajoutez le lien vers index.css -->

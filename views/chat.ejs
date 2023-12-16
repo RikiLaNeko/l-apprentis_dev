@@ -1,4 +1,4 @@
-<% include header.ejs %>
+<% include partials/header.ejs %>
 <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 <link rel='stylesheet' href='/stylesheets/chat.css' />
 
@@ -8,7 +8,9 @@
     <select name="receiver_id">
         <% if (users) { %>
             <% users.forEach(receiver => { %>
-                <option value="<%= receiver.id %>" <%= receiver.id == receiver_id ? 'selected' : '' %>><%= receiver.username %></option>
+                <% if (receiver.id !== user.id) { %>
+                    <option value="<%= receiver.id %>" <%= receiver.id == receiver_id ? 'selected' : '' %>><%= receiver.username %></option>
+                <% } %>
             <% }); %>
         <% } %>
     </select>
@@ -21,13 +23,16 @@
     <select name="receiver_id">
         <% if (users) { %>
             <% users.forEach(receiver => { %>
-                <option value="<%= receiver.id %>"><%= receiver.username %></option>
+                <% if (receiver.id !== user.id) { %>
+                    <option value="<%= receiver.id %>"><%= receiver.username %></option>
+                <% } %>
             <% }); %>
         <% } %>
     </select>
     <textarea name="content" placeholder="Entrez votre message ici" required></textarea>
     <button type="submit">Envoyer le message</button>
 </form>
+
 
 
 <!-- Chat box -->
@@ -66,5 +71,5 @@
     });
 </script>
 
-<% include footer.ejs %>
+<% include partials/footer.ejs %>
 
