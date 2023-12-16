@@ -1,0 +1,42 @@
+<!-- header.ejs -->
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+<header>
+    <a href="/">Home</a>
+    <% if (user) { %>
+        <div class="right" id="username" style="cursor: pointer;">Bienvenue, <%= user.username.charAt(0).toUpperCase() + user.username.slice(1) %>!</div>
+        <div class="right" id="userDropdown" style="display: none;">
+            <a href="/language-settings">Language Settings</a>
+            <br> <!-- Ajout d'un saut de ligne -->
+            <a href="/account-settings">Account Settings</a>
+            <br> <!-- Ajout d'un saut de ligne -->
+            <form action="/logout" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    <% } else { %>
+        <a href="/login" class="right">Login</a>
+        <a href="/register" class="right">Register</a>
+    <% } %>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.getElementById('userDropdown');
+            const username = document.getElementById('username');
+
+            dropdown.style.display = 'none';
+
+            // Fermer le menu déroulant lors du clic en dehors
+            document.addEventListener('click', function(event) {
+                if (!username.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.style.display = 'none';
+                }
+            });
+
+            // Afficher ou cacher le menu déroulant lors du clic sur le nom d'utilisateur
+            username.addEventListener('click', function() {
+                dropdown.style.display = (dropdown.style.display === 'none') ? 'block' : 'none';
+            });
+        });
+    </script>
+    <a href="/users">Liste des utilisateurs</a>
+</header>
+<link rel='stylesheet' href='/stylesheets/index.css' /> <!-- Ajoutez le lien vers index.css -->

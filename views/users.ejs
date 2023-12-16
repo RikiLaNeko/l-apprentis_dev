@@ -1,0 +1,15 @@
+<!-- users.ejs -->
+<link rel='stylesheet' href='/stylesheets/users.css' />
+<h2>Liste des utilisateurs</h2>
+
+<% if (users && users.length > 0) { %>
+    <ul class="user-list">
+        <% users.forEach(user => { %>
+            <li>
+                <a href="/chat?receiver_id=<%= user.id %>"><%= user.username %></a>
+            </li>
+        <% }); %>
+    </ul>
+<% } else { %>
+    <p>Aucun utilisateur trouvé.</p>
+<% } %>

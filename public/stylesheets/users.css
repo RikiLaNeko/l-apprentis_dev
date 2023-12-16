@@ -1,0 +1,27 @@
+/* users.css */
+
+/* Style de la liste des utilisateurs */
+.user-list {
+    list-style: none;
+    padding: 0;
+}
+
+.user-list li {
+    margin-bottom: 10px;
+}
+
+.user-list a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 8px;
+    display: inline-block;
+    background-color: #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.user-list a:hover {
+    background-color: #555;
+    color: white;
+}

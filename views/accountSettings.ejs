@@ -1,0 +1,36 @@
+<!-- accountSettings.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/Account_Settings.css' />
+</head>
+<body>
+<h1>Account Settings</h1>
+
+<!-- Formulaire pour changer le nom d'utilisateur -->
+<form action="/change-username" method="post">
+    <label for="newUsername">New Username:</label>
+    <input type="text" id="newUsername" name="newUsername" required>
+    <button type="submit">Change Username</button>
+</form>
+
+<!-- Formulaire pour changer le mot de passe -->
+<form action="/change-password" method="post">
+    <label for="oldPassword">Old Password:</label>
+    <input type="password" id="oldPassword" name="oldPassword" required>
+
+    <label for="newPassword">New Password:</label>
+    <input type="password" id="newPassword" name="newPassword" required>
+
+    <button type="submit">Change Password</button>
+</form>
+
+<!-- Formulaire pour supprimer le compte -->
+<form action="/delete-account" method="post">
+    <label for="confirmDelete">Type 'DELETE' to confirm:</label>
+    <input type="text" id="confirmDelete" name="confirmDelete" required>
+    <button type="submit">Delete Account</button>
+</form>
+</body>
+</html>

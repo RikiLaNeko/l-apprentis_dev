@@ -1,0 +1,70 @@
+<% include header.ejs %>
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+<link rel='stylesheet' href='/stylesheets/chat.css' />
+
+<!-- Form for selecting the receiver and loading the chat -->
+<form action="/get-messages" method="get">
+    <input type="hidden" name="sender_id" value="<%= user.id %>">
+    <select name="receiver_id">
+        <% if (users) { %>
+            <% users.forEach(receiver => { %>
+                <option value="<%= receiver.id %>" <%= receiver.id == receiver_id ? 'selected' : '' %>><%= receiver.username %></option>
+            <% }); %>
+        <% } %>
+    </select>
+    <button type="submit">Charger le chat</button>
+</form>
+
+<!-- Form for sending a new message -->
+<form action="/send-message" method="post">
+    <input type="hidden" name="sender_id" value="<%= user.id %>">
+    <select name="receiver_id">
+        <% if (users) { %>
+            <% users.forEach(receiver => { %>
+                <option value="<%= receiver.id %>"><%= receiver.username %></option>
+            <% }); %>
+        <% } %>
+    </select>
+    <textarea name="content" placeholder="Entrez votre message ici" required></textarea>
+    <button type="submit">Envoyer le message</button>
+</form>
+
+
+<!-- Chat box -->
+<div id="chat-box">
+    <% if (messages && messages.length > 0) { %>
+        <% messages.forEach(message => { %>
+            <p><strong><%= message.sender_id === user.id ? 'Moi' : (users.find(u => u.id === message.sender_id) || {}).username %>:</strong> <%= message.content %></p>
+        <% }); %>
+    <% } else { %>
+        <p>No messages</p>
+    <% } %>
+</div>
+
+<% if (typeof session !== 'undefined' && typeof session.successMessage !== 'undefined') { %>
+    <div class="alert alert-success">
+        <%= session.successMessage %>
+    </div>
+<% } %>
+
+<!-- Code client pour la gestion de Socket.IO -->
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+<script>
+    const socket = io();
+
+    // Rejoindre la salle spécifique correspondant à l'ID du récepteur
+    socket.emit('joinRoom', '<%= receiver_id %>');
+
+    // Écouter les nouveaux messages
+    socket.on('newMessages', (messages) => {
+        // Mettez à jour la zone de chat avec les nouveaux messages
+        const chatBox = document.getElementById('chat-box');
+
+        messages.forEach((message) => {
+            chatBox.innerHTML += `<p><strong>${message.sender_id === user.id ? 'Moi' : (users.find(u => u.id === message.sender_id) || {}).username}:</strong> ${message.content}</p>`;
+        });
+    });
+</script>
+
+<% include footer.ejs %>
+
