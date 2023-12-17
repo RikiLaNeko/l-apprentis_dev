@@ -1,0 +1,27 @@
+<!-- createGroup.ejs -->
+
+<% include partials/header.ejs %>
+<link rel='stylesheet' href='/stylesheets/chat.css' />
+
+<!-- Form for creating a new group -->
+<form action="/create-group" method="post">
+    <input type="hidden" name="groupName" value="NomDuGroupe">
+    <h2>Créer un nouveau groupe</h2>
+    <label for="groupName">Nom du groupe:</label>
+    <input type="text" id="groupName" name="groupName" required>
+    <br>
+    <label for="members">Membres:</label>
+    <select name="members[]" multiple required>
+        <% if (users) { %>
+            <% users.forEach(member => { %>
+                <% if (member.id !== user.id) { %>
+                    <option value="<%= member.id %>"><%= member.username %></option>
+                <% } %>
+            <% }); %>
+        <% } %>
+    </select>
+    <br>
+    <button type="submit">Créer le groupe</button>
+</form>
+
+<% include partials/footer.ejs %>

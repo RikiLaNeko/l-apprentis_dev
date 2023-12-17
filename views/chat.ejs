@@ -55,7 +55,7 @@
 <!-- Code client pour la gestion de Socket.IO -->
 <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 <script>
-    const socket = io();
+    const socket = io('http://localhost:3001');
 
     // Rejoindre la salle spécifique correspondant à l'ID du récepteur
     socket.emit('joinRoom', '<%= receiver_id %>');
@@ -69,7 +69,12 @@
             chatBox.innerHTML += `<p><strong>${message.sender_id === user.id ? 'Moi' : (users.find(u => u.id === message.sender_id) || {}).username}:</strong> ${message.content}</p>`;
         });
     });
+
+    // Emit the userConnected event when the page loads
+    socket.emit('userConnected', '<%= user.id %>');
 </script>
+
+
 
 <% include partials/footer.ejs %>
 

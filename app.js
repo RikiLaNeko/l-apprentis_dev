@@ -2,6 +2,8 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
+const cors = require('cors');
+
 const createError = require('http-errors');
 const session = require('express-session');
 const path = require('path');
@@ -16,7 +18,7 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIO(server);
+const io = new socketIO.Server(server);
 
 // Configuration de la vue
 app.set('views', path.join(__dirname, 'views'));
@@ -33,7 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(cors());
 // Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -70,30 +72,34 @@ function executeSafely(code) {
 }
 
 // Socket.IO pour la gestion des messages
-app.get('/get-messages-socketio', (req, res) => {
+app.get('/get-messages-socketio/:sender_id/:receiver_id', (req, res) => {
   const user = req.session.user;
-  const { sender_id, receiver_id } = req.query;
+  const { sender_id, receiver_id } = req.params;
 
   if (!sender_id || !receiver_id) {
     return res.status(400).send('Sender ID and Receiver ID are required');
   }
 
   const getMessagesQuery = 'SELECT * FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY timestamp';
-
   db.query(getMessagesQuery, [sender_id, receiver_id, receiver_id, sender_id], (err, results) => {
     if (err) {
       console.error('Error retrieving messages:', err);
       res.status(500).send('Server error');
     } else {
+      // Emit the 'newMessages' event when messages are retrieved
       io.to(receiver_id).emit('newMessages', results);
-      res.status(200).send('Messages sent successfully');
+
+      res.render('chat', { title: 'Chat', user: req.session.user, messages: results, receiver_id });
     }
   });
 });
 
+
 // Gestion des connexions Socket.IO
 io.on('connection', (socket) => {
   console.log('Client connected:', socket.id);
+
+  // Handle other socket events...
 
   // Gérer la connexion du client à une salle spécifique
   socket.on('joinRoom', (room) => {
@@ -105,6 +111,7 @@ io.on('connection', (socket) => {
     console.log('Client disconnected:', socket.id);
   });
 });
+
 
 // Connexion à la base de données
 db.connect((err) => {
