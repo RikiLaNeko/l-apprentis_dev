@@ -305,6 +305,44 @@ router.get('/get-messages/:sender_id/:receiver_id', (req, res) => {
   });
 });
 
+router.get('/ressource',(req, res) => {
+  const user = req.session.user;
+  const customTitle = 'Ressources';
+  res.render('ressource/ressource', { title: customTitle, user });
+});
+
+router.get('/cours',(req, res) => {
+  const user = req.session.user;
+  const customTitle = 'cours';
+  res.render('ressource/cours/cours_index', { title: customTitle, user });
+});
+
+router.get('/cours_html_intro',(req, res) => {
+  const user = req.session.user;
+  const customTitle = 'Cours Html,CSS & JS';
+  res.render('ressource/cours/html/1_Introduction/Introduction', { title: customTitle, user });
+})
+
+router.get('/cours_html_base',(req, res) => {
+    const user = req.session.user;
+    const customTitle = 'Cours Html,CSS & JS';
+    res.render('ressource/cours/html/2_Les Base/Base_html', { title: customTitle, user });
+})
+
+router.get('/exercice',(req, res) => {
+    const user = req.session.user;
+    const customTitle = 'exercice';
+    res.render('ressource/exercice/exercice_index', { title: customTitle, user });
+})
+
+
+router.get('/tp', (req, res) => {
+    const user = req.session.user;
+    const customTitle = 'tp';
+    res.render('ressource/tp/tp_index', { title: customTitle, user });
+})
+
+
 
 
 module.exports = router;

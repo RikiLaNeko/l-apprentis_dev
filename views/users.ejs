@@ -1,7 +1,11 @@
 <!-- users.ejs -->
 <link rel='stylesheet' href='/stylesheets/users.css' />
 <h2>Liste des utilisateurs</h2>
+<% include partials/header.ejs %>
 
+
+
+<% include partials/footer.ejs %>
 <% if (users && users.length > 0) { %>
     <ul class="user-list">
         <% users.forEach(user => { %>

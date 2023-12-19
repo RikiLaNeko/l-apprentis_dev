@@ -1,0 +1,100 @@
+<% include ../../../../partials/header.ejs %>
+<title>Base HTML</title>
+<h1>Introduction aux Bases des Langages : HTML, CSS, JavaScript</h1>
+
+<p>Bienvenue dans cette introduction aux langages fondamentaux du développement web : HTML, CSS et JavaScript.</p>
+
+<p>Le but de ce cours est de vous donner les bases nécessaires pour comprendre comment fonctionne un site web et comment il est construit. Nous allons voir comment créer une page web simple et comment la rendre plus attrayante en utilisant le CSS. De plus, nous explorerons comment rendre une page interactive en utilisant le JavaScript.</p>
+
+<h2>HTML - Structure de la Page</h2>
+<p>HTML (HyperText Markup Language) est utilisé pour structurer le contenu d'une page web. Voici quelques balises HTML couramment utilisées :</p>
+
+<ul>
+    <li><code>&lt;!DOCTYPE html&gt;</code> : Déclaration du type de document HTML.</li>
+    <li><code>&lt;html&gt;</code> : Élément racine de la page.</li>
+    <li><code>&lt;head&gt;</code> : Contient les métadonnées de la page.</li>
+    <li><code>&lt;title&gt;</code> : Définit le titre de la page.</li>
+    <li><code>&lt;body&gt;</code> : Contient le contenu visible de la page.</li>
+    <li><code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, ..., <code>&lt;h6&gt;</code> : Titres de différentes tailles.</li>
+    <li><code>&lt;p&gt;</code> : Paragraphe de texte.</li>
+    <li><code>&lt;a href="url"&gt;</code> : Hyperlien vers une autre page.</li>
+    <li><code>&lt;img src="image.jpg" alt="Description de l'image"&gt;</code> : Affichage d'une image.</li>
+</ul>
+
+<h2>CSS - Mise en Forme</h2>
+<p>CSS (Cascading Style Sheets) est utilisé pour styliser et mettre en forme les éléments HTML. Voici des exemples de CSS :</p>
+
+<pre>
+<code>
+/* Styles pour le titre h1 */
+h1 {
+    color: blue;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+/* Styles pour les liens */
+a {
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+/* Styles pour les paragraphes */
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Styles pour les boutons */
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</code>
+</pre>
+
+<h2>JavaScript - Interaction</h2>
+<p>JavaScript permet d'ajouter des fonctionnalités interactives. Voici un exemple de JavaScript avec une fonction pour changer le texte d'un paragraphe :</p>
+
+<pre>
+<code>
+// Fonction pour changer le texte
+function changerTexte() {
+    document.getElementById('monParagraphe').innerHTML = 'Nouveau texte !';
+}
+</code>
+</pre>
+
+<p>Vous pouvez appeler cette fonction avec un bouton HTML :</p>
+
+<pre>
+<code>
+<button onclick="changerTexte()">Changer le texte</button>
+</code>
+</pre>
+
+<p>Ajoutez un paragraphe avec un identifiant :</p>
+
+<pre>
+<code>
+<p id="monParagraphe">Cliquez sur le bouton pour changer le texte.</p>
+</code>
+</pre>
+
+<h2>Liens</h2>
+<p>Utilisez la balise <code>&lt;a&gt;</code> pour créer des liens :</p>
+
+<pre>
+<code>
+<a href="https://www.example.com">Visitez notre site</a>
+</code>
+</pre>
+
+<p>Ces exemples vous aideront à comprendre comment styliser vos pages avec CSS et ajouter de l'interactivité avec JavaScript. N'hésitez pas à expérimenter davantage pour enrichir vos compétences !</p>
+
+<% include ../../../../partials/footer.ejs %>

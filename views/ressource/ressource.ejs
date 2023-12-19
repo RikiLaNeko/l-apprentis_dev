@@ -1,0 +1,35 @@
+<% include ../partials/header.ejs %>
+<title> Ressources </title>
+
+<h1><a href="https://code.visualstudio.com/">Visual Studio Code</a></h1>
+<p>Visual Studio Code est un éditeur de code source gratuit, léger et puissant. Il offre une interface utilisateur conviviale et de nombreuses extensions pour améliorer la productivité des développeurs.</p>
+
+<h1><a href="https://github.com/">GitHub</a></h1>
+<p>GitHub est une plateforme de développement collaboratif basée sur Git. Il permet le suivi des versions, la gestion des projets et la collaboration entre développeurs. Les projets hébergés sur GitHub sont souvent disponibles en open source.</p>
+
+<h1><a href="https://nodejs.org/en">Node.js</a></h1>
+<p>Node.js est un environnement d'exécution JavaScript côté serveur. Il permet de créer des applications réseau évolutives et des serveurs web. Node.js utilise un modèle non bloquant, ce qui le rend efficace pour les applications en temps réel.</p>
+
+<h1><a href="https://expressjs.com/">Express</a></h1>
+<p>Express est un framework web pour Node.js. Il simplifie le processus de création d'applications web en fournissant des fonctionnalités essentielles et en facilitant la gestion des routes et des middlewares.</p>
+
+<h1><a href="https://www.java.com/fr/">Java</a></h1>
+<p>Java est un langage de programmation orienté objet polyvalent. Il est largement utilisé pour développer des applications d'entreprise, des applications mobiles Android et des solutions embarquées.</p>
+
+<h1><a href="#html">HTML</a></h1>
+<p>HTML (HyperText Markup Language) est le langage de balisage standard pour la création de pages web. Il définit la structure et le contenu des documents web en utilisant des balises.</p>
+
+<h1><a href="#css">CSS</a></h1>
+<p>CSS (Cascading Style Sheets) est utilisé pour styliser les pages HTML. Il permet de définir la mise en page, les couleurs, les polices et d'autres aspects visuels d'un site web.</p>
+
+<h1><a href="#javascript">JavaScript</a></h1>
+<p>JavaScript est un langage de programmation côté client utilisé pour rendre les pages web interactives. Il peut être exécuté dans un navigateur pour manipuler le contenu de la page et réagir aux événements utilisateur.</p>
+
+<h1><a href="#mysql">MySQL</a></h1>
+<p>MySQL est un système de gestion de base de données relationnelle. Il est largement utilisé pour stocker et récupérer des données dans les applications web. MySQL prend en charge le langage SQL pour interagir avec la base de données.</p>
+<%if (user) {%>
+    <h1>lien vers les cours => <a href="/cours"></a></h1>
+<%}else {%>
+    <h1>Pour accéder au cours, il faut se connecter !</h1>
+<%}%>
+<% include ../partials/footer.ejs %>
