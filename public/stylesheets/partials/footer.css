@@ -1,0 +1,78 @@
+/* Styles pour la fenêtre de chat */
+#chatWindow {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#chatMessages {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#messageInput {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#sendMessage {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+#closeChat {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Styles pour le footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: right;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+footer a:hover {
+    background-color: #555;
+}
+
+/* Ajout du style pour le lien du chat dans le footer */
+footer #chatWindowLink {
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+}

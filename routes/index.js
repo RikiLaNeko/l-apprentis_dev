@@ -335,6 +335,11 @@ router.get('/exercice',(req, res) => {
     res.render('ressource/exercice/exercice_index', { title: customTitle, user });
 })
 
+router.get('/exercice/html/hello_wolrd',(req, res) => {
+  const user = req.session.user;
+  const customTitle = 'exercice';
+  res.render('ressource/exercice/html/1_Hello world/HW', { title: customTitle, user });
+})
 
 router.get('/tp', (req, res) => {
     const user = req.session.user;
